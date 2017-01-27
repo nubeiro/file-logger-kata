@@ -13,19 +13,22 @@ class FileLoggerSpec extends ObjectBehavior
         $this->shouldHaveType(FileLogger::class);
     }
 
-    /**
-     * 2) When this method is called, it should append the message to the end of a file,
-     * "log.txt", located in the same folder as the running application (or tests).
-     *
-     */
     function it_logs_messages()
     {
         $this->log("info message to be logged")->shouldReturn(true);
     }
 
+    function it_appends_messages()
+    {
+        $this->log("first message")->shouldReturn(true);
+        $this->log("last message")->shouldReturn(true);
+    }
+
     function it_reads_messages()
     {
         $this->read()->shouldContain("info message to be logged");
+        $this->read()->shouldContain("first message");
+        $this->read()->shouldContain("last message");
     }
 
 }
