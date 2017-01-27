@@ -13,6 +13,11 @@ class FileLoggerSpec extends ObjectBehavior
         $this->shouldHaveType(FileLogger::class);
     }
 
+    function it_uses_logfile_with_yyyymmdd_dot_txt_name()
+    {
+        $this->getFileName()->shouldBe(date('Ymd.\tx\t'));
+    }
+
     function it_logs_messages()
     {
         $this->log("info message to be logged")->shouldReturn(true);

@@ -4,11 +4,16 @@ namespace Nubeiro;
 
 class FileLogger
 {
-    private $logFile = "file.log";
+    protected $fileName = "file.log";
+
+    public function getFileName()
+    {
+        return $this->fileName;
+    }
 
     public function log($message)
     {
-        $result  = file_put_contents($this->logFile, $message, FILE_APPEND);
+        $result  = file_put_contents($this->fileName, $message, FILE_APPEND);
         if ($result === false) {
             return false;
         }
@@ -18,6 +23,6 @@ class FileLogger
 
     public function read()
     {
-        return file_get_contents($this->logFile);
+        return file_get_contents($this->fileName);
     }
 }
