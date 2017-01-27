@@ -4,7 +4,13 @@ namespace Nubeiro;
 
 class FileLogger
 {
-    protected $fileName = "file.log";
+    protected $fileName;
+
+    public function __construct()
+    {
+        $this->fileName = sprintf('log%s.txt', date('Ymd'));
+    }
+
 
     public function getFileName()
     {
