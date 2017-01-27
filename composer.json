@@ -1,0 +1,16 @@
+{
+    "name": "nubeiro/file-logger",
+    "description": "File logger kata.",
+    "type": "project",
+    "require-dev": {
+        "phpspec/phpspec": "^3.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Raul Araya",
+            "email": "nubeiro@gmail.com"
+        }
+    ],
+    "require": {}
+}
