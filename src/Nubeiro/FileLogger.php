@@ -13,4 +13,9 @@ class FileLogger
 
         return true;
     }
+
+    public function read()
+    {
+        return file_get_contents("file.log");
+    }
 }

@@ -22,4 +22,10 @@ class FileLoggerSpec extends ObjectBehavior
     {
         $this->log("info message to be logged")->shouldReturn(true);
     }
+
+    function it_reads_messages()
+    {
+        $this->read()->shouldContain("info message to be logged");
+    }
+
 }
