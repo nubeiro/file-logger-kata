@@ -2,13 +2,20 @@
 
 namespace Nubeiro;
 
+use Nubeiro\Writer;
+
 class FileLogger
 {
     protected $fileName;
+    /**
+     * @var \Nubeiro\Writer
+     */
+    private $writer;
 
-    public function __construct()
+    public function __construct(Writer $writer)
     {
         $this->fileName = sprintf('log%s.txt', date('Ymd'));
+        $this->writer = $writer;
     }
 
 
@@ -19,12 +26,7 @@ class FileLogger
 
     public function log($message)
     {
-        $result = file_put_contents($this->fileName, $message, FILE_APPEND);
-        if ($result === false) {
-            return false;
-        }
-
-        return true;
+        return $this->writer->write($message);
     }
 
     public function read()
