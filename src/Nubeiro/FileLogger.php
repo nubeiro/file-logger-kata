@@ -19,7 +19,7 @@ class FileLogger
 
     public function log($message)
     {
-        $result  = file_put_contents($this->fileName, $message, FILE_APPEND);
+        $result = file_put_contents($this->fileName, $message, FILE_APPEND);
         if ($result === false) {
             return false;
         }

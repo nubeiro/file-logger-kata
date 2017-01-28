@@ -17,11 +17,6 @@ class FileLoggerSpec extends ObjectBehavior
         }
     }
 
-    function it_creates_new_file_on_new_day()
-    {
-        $this->getFileName()->shouldBe('fail');
-    }
-
     function it_is_initializable()
     {
         $this->shouldHaveType(FileLogger::class);
