@@ -2,8 +2,6 @@
 
 namespace Nubeiro;
 
-use Nubeiro\Writer;
-
 class FileLogger
 {
     protected $fileName;
@@ -11,11 +9,16 @@ class FileLogger
      * @var \Nubeiro\Writer
      */
     private $writer;
+    /**
+     * @var Reader
+     */
+    private $reader;
 
-    public function __construct(Writer $writer)
+    public function __construct(Writer $writer, Reader $reader)
     {
         $this->fileName = sprintf('log%s.txt', date('Ymd'));
         $this->writer = $writer;
+        $this->reader = $reader;
     }
 
 
@@ -31,6 +34,6 @@ class FileLogger
 
     public function read()
     {
-        return file_get_contents($this->fileName);
+        return $this->reader->read();
     }
 }

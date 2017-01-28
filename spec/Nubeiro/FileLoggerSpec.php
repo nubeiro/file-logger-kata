@@ -3,23 +3,22 @@
 namespace spec\Nubeiro;
 
 use Nubeiro\FileLogger;
+use Nubeiro\Reader;
 use Nubeiro\Writer;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 class FileLoggerSpec extends ObjectBehavior
 {
-    function let(Writer $writer)
+    /**
+     * @todo Providing a reader for fileLogger feels like cheating.
+     *
+     * @param Writer $writer
+     * @param Reader $reader
+     */
+    function let(Writer $writer, Reader $reader)
     {
-        $this->beConstructedWith($writer);
-    }
-
-    function letGo()
-    {
-        $fileName = $this->getFileName()->getWrappedObject();
-        if (file_exists($fileName)) {
-            unlink($fileName);
-        }
+        $this->beConstructedWith($writer, $reader);
     }
 
     function it_is_initializable()
@@ -32,7 +31,7 @@ class FileLoggerSpec extends ObjectBehavior
         $this->getFileName()->shouldBe(date('\l\o\gYmd.\tx\t')); // <-- having fun with date formats :-D
     }
 
-    function it_logs_messages($writer)
+    function it_logs_messages(Writer $writer)
     {
         $message = "info message to be logged";
         $writer->write($message)->willReturn(true);
@@ -56,22 +55,13 @@ class FileLoggerSpec extends ObjectBehavior
     }
 
     /**
-     * @todo provide reader interface and set expectations, broken test
+     * @todo reading from this class seems out of the scope of this kata.
      */
-    function it_reads_messages($writer)
+    function it_reads_messages(Reader $reader)
     {
-        $messages = [
-            "info message to be logged",
-            "first message",
-            "last message",
-        ];
-        array_map(function ($message) use ($writer) {
-            $writer->write($message)->willReturn(true);
-        }, $messages);
-
-        array_map(function($message) {
-            $this->log($message)->shouldReturn(true);
-        }, $messages);
+        $message = "info message to be logged";
+        $reader->read()->willReturn($message);
+        $this->read($message)->shouldReturn($message);
     }
 
 }
