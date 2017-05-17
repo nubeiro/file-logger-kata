@@ -22,5 +22,5 @@ See https://github.com/ardalis/kata-catalog/blob/master/katas/File%20Logger.md.
 
 # To run tests
 
-composer install
-./vendor/bin/phpunit
+    php composer install
+    ./vendor/bin/phpunit
