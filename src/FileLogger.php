@@ -9,6 +9,7 @@ class FileLogger
      * @var \Nubeiro\Writer
      */
     private $writer;
+
     /**
      * @var Reader
      */
