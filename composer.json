@@ -1,6 +1,6 @@
 {
-    "name": "nubeiro/file-logger",
-    "description": "File logger kata.",
+    "name": "nubeiro/file-logger-kata",
+    "description": "File logger kata. A testing exercise",
     "type": "project",
     "require-dev": {
         "phpunit/phpunit": "^6.1"
